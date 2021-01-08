@@ -12,6 +12,7 @@ def name():
 def saving():
     save = input("Save character?(y/n)")
     if save == "y":
+        #tekitab tekstifaili tegelase nimega sinna kus on skriptifail, kui olemas kirjutab üle
         f = open(f"{character}.txt", "w+")
         f.write(f"Character's name: {character}.\nSkillpoints:\n HP: {hp}\n Damage: {dmg}\n Stamina: {stm}")
         f.close
@@ -33,27 +34,30 @@ def skills():
     print("1. HP")
     print("2. Damage")
     print("3. Stamina")
+    #Küsib kasutajalt koguse ja vaatab kas number sobib, kui sobib lisab võimele
     if pnt>0:
         hp = int(input(f"Enter a number 1-{pnt}:"))
-        while hp>10:
+        while hp>pnt:
             print(f"Can't spend more than {pnt}")
-            hp = int(input("Enter a number 1-{pnt}:"))
+            hp = int(input(f"Enter a number 1-{pnt}:"))
         pnt -= hp
-        hp += 100
     if pnt>0:
         dmg = int(input(f"Enter a number 1-{pnt}: "))
-        while dmg>10:
+        while dmg>pnt:
             print(f"Can't spend more than {pnt}")
             dmg = int(input(f"Enter a number 1-{pnt}: "))
         pnt -= dmg
-        dmg += 5
     if pnt>0:
         stm = int(input(f"Enter a number 1-{pnt}: "))
-        while stm>10:
+        while stm>pnt:
             print(f"Can't spend more than {pnt}")
             stm = int(input(f"Enter a number 1-{pnt}: "))
         pnt -= stm
-        stm += 25
+    #Base valued, et ükski 0 ei oleks
+    stm += 25
+    dmg += 5
+    hp += 100
+    #Lisab ülejäänud punktid viimasele 
     if pnt>0:
         print("The rest of the skillpoints were added to the final skill automatically")
         stm = pnt
@@ -61,6 +65,7 @@ def skills():
     print(f"HP: {hp}")
     print(f"Damage: {dmg}")
     print(f"Stamina: {stm}")
+#game() pole veel tähtis V
 def game():
     print("You are in a dark room.")
     print("You feel a wooden object as you feel the area around you.")
@@ -89,7 +94,6 @@ def option():
         else:
             print("What")
             start = input("Would you like to start the game?(y/n): ")
-#Mängu alustamine
+#Mäng
 option()
 saving()
-game()
