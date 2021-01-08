@@ -47,20 +47,30 @@ def skills():
     print("2. Damage")
     print("3. Stamina")
     #Küsib kasutajalt koguse ja vaatab kas number sobib, kui sobib lisab võimele
+    
     if pnt>0:
-        hp = int(input(f"Enter a number 1-{pnt}:"))
+        hp = input(f"Enter a number 1-{pnt} for HP:")
+        while not hp.isdigit():
+            hp = input(f"Please enter a NUMBER 1-{pnt} for HP: ")
+        hp = int(hp)
         while hp>pnt:
             print(f"Can't spend more than {pnt}")
-            hp = int(input(f"Enter a number 1-{pnt}:"))
+            hp = int(input(f"Enter a number 1-{pnt} for HP:"))
         pnt -= hp
     if pnt>0:
-        dmg = int(input(f"Enter a number 1-{pnt}: "))
+        dmg = input(f"Enter a number 1-{pnt} for damage:")
+        while not dmg.isdigit():
+            dmg = input(f"Please enter a NUMBER 1-{pnt}: ")
+        dmg = int(dmg)
         while dmg>pnt:
             print(f"Can't spend more than {pnt}")
             dmg = int(input(f"Enter a number 1-{pnt}: "))
         pnt -= dmg
     if pnt>0:
-        stm = int(input(f"Enter a number 1-{pnt}: "))
+        stm = input(f"Enter a number 1-{pnt} for stamina: ")
+        while not stm.isdigit():
+            stmn = input(f"Please enter a NUMBER 1-{pnt}: ")
+        stm = int(stm)
         while stm>pnt:
             print(f"Can't spend more than {pnt}")
             stm = int(input(f"Enter a number 1-{pnt}: "))
