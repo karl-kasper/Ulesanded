@@ -2,6 +2,8 @@
 #Seiklusmäng
 #10.12.2020
 #Nimi
+import os.path
+from os import path
 def name():
     #Võtab nime ja paneb suure algustähe
     global character
@@ -10,17 +12,27 @@ def name():
     print(f"Your name is {character}.\n")
 #Tegelase salvestus
 def saving():
+    #Vaatab kas sellise nimega tegelane juba olemas, kui on siis küsib kas tahad üle kirjutada.
+    ball = str(path.exists(f'{character}.txt'))
+    if ball == "True":
+        gg = input("That character already exists. Would you like to overwrite it?(y/n)")
+        if gg == "y":
+            sav()
+        else:
+            print("I osa lõpp")
+    else:
+        sav()
+    #Salvestamine teksitifaili
+def sav():
     save = input("Save character?(y/n)")
     if save == "y":
-        #tekitab tekstifaili tegelase nimega sinna kus on skriptifail, kui olemas kirjutab üle
+        #tekitab tekstifaili tegelase nimega sinna kus on skriptifail, kui olemas siis tahtmise korral kirjutab üle
         f = open(f"{character}.txt", "w+")
         f.write(f"Character's name: {character}.\nSkillpoints:\n HP: {hp}\n Damage: {dmg}\n Stamina: {stm}")
         f.close
         print("Character was saved.")
     else:
         print("Character wasn't saved.")
-    if __name__== "__saving__":
-        saving()
 #Punktid
 def skills():
     global hp
@@ -65,6 +77,7 @@ def skills():
     print(f"HP: {hp}")
     print(f"Damage: {dmg}")
     print(f"Stamina: {stm}")
+    saving()
 #game() pole veel tähtis V
 def game():
     print("You are in a dark room.")
@@ -96,4 +109,3 @@ def option():
             start = input("Would you like to start the game?(y/n): ")
 #Mäng
 option()
-saving()
