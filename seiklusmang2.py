@@ -22,6 +22,7 @@ def game(d,h,s,sc):
         time.sleep(1)
         print("You picked up a stick.")
         print("+1 atk")
+        #Oksa üles võtmisel lisab juurde 1 dmgi
         dmg += 1
         time.sleep(1)
         print(f"NOTE: Your damage is now {dmg}")
@@ -43,16 +44,19 @@ def game(d,h,s,sc):
         time.sleep(1)
         battle(dmg,hp,stm,enhp,sc)
         return enhp
+#Salvestamine suvalistesse kohtadesse panemiseks
 def savting():
     f = open(f"{character}.txt", "w+")
     f.write(f"Character's name: {character}.\nSkillpoints:\n HP: {hp}\n Damage: {dmg}\n Stamina: {stm}\n Score: {sc}")
     f.close
+#Võtab faili ja laeb sealt andmed
 def load():
     f = open(f'{character}.txt', 'r')
     content = f.read()
     print(content)
     f.close()
     game(dmg,hp,stm,sc)
+#Nime küsimine
 def name():
     #Võtab nime ja paneb suure algustähe
     global character
@@ -61,7 +65,7 @@ def name():
     print(f"Your name is {character}.\n")
 #Tegelase salvestus
 def saving():
-    #Vaatab kas sellise nimega tegelane juba olemas, kui on siis küsib kas tahad üle kirjutada.
+    #Vaatab kas sellise nimega tegelane juba olemas, kui on siis küsib kas tahad sisse laadida.
     ball = str(path.exists(f'{character}.txt'))
     if ball == "True":
         gg = input("That character already exists. Would you like to load it?(y/n)")
