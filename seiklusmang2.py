@@ -161,7 +161,9 @@ def option():
         else:
             print("What")
             start = input("Would you like to start the game?(y/n): ")
+#Võitlus
 def battle(dmg,hp,stm,enhp,sc):
+    #Võitlus kestab kuni kumbki sureb
     while hp>=0 and enhp>=0:
         print("Options\n1. Attack\n2. Heal")
         opt = input("What will you do?")
@@ -192,6 +194,7 @@ def battle(dmg,hp,stm,enhp,sc):
             hp-=endmg
             print(f"Your hp is now {hp}")
             time.sleep(1)
+    #Kui sured siis kaotad ja punkte ei saa, aga kui võidad saad 10 punkti ja salvestatakse tulemus faili
     if hp<=0:
         print(f"You lost the game.")
         print("Your score:{sc}")
@@ -201,5 +204,5 @@ def battle(dmg,hp,stm,enhp,sc):
         sc+=10
         print(f"Your score is now: {sc}")
         savting()
-#Mäng
+#Alustab
 option()
